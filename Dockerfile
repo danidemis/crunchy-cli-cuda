@@ -19,7 +19,7 @@ RUN apt-get -y install build-essential yasm cmake libtool libc6 libc6-dev unzip 
 RUN cd /tmp/ && wget https://github.com/crunchy-labs/crunchy-cli/releases/download/v3.4.3/crunchy-cli-v3.4.3-linux-x86_64
 RUN mv /tmp/crunchy-cli-v3.4.3-linux-x86_64 /usr/bin/crunchy-cli && chmod +x /usr/bin/crunchy-cli
 RUN useradd openvpn
-RUN echo "openvpn ALL=(ALL) NOPASSWD: /usr/bin/openvpn, /usr/bin/crunchy-cli, /usr/bin/tee" >> /etc/sudoers
+RUN echo "openvpn ALL=(ALL) NOPASSWD: /usr/bin/openvpn, /usr/bin/crunchy-cli, /usr/bin/tee, /usr/bin/cp" >> /etc/sudoers
 RUN mkdir /download
 WORKDIR /config
 COPY ./scripts/entrypoint.sh /usr/bin/entrypoint.sh

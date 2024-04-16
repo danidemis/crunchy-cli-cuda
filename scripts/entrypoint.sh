@@ -17,5 +17,9 @@ else
 fi
 
 sudo cp /config/*.ovpn /etc/openvpn/ovpn.conf
-#sudo openvpn --config client.ovpn --auth-user-pass /etc/openpvn/credentials &
 
+sudo openvpn --config client.ovpn --auth-user-pass /etc/openpvn/credentials &
+
+sleep 10
+
+sudo crunchy-cli "$@"

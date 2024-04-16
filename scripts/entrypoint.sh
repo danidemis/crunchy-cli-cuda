@@ -1,10 +1,21 @@
 #!/bin/sh
 
+if [ -z "$OPENVPN_USER" ]
+then
+      echo "Variabile vuota. Uscita."
+      exit 1
+else
+      echo "$OPENVPN_USER"  | sudo tee /etc/openvpn/credentials
+fi
 
-echo "$OPENVPN_USER" | sudo tee /etc/openvpn/credentials
-echo "$OPENVPN_PASSWORD" | sudo tee -a /etc/openvpn/credentials
+if [ -z "$OPENVPN_PASSWORD" ]
+then
+      echo "Variabile vuota. Uscita."
+      exit 1
+else
+      echo "$OPENVPN_PASSWORD"  | sudo tee -a /etc/openvpn/credentials
+fi
 
-echo "my name is $USER"
-sudo cp /etc/openvpn/credentials /config/credentials
+sudo cp /config/*.ovpn /etc/openvpn/ovpn.conf
 #sudo openvpn --config client.ovpn --auth-user-pass /etc/openpvn/credentials &
 

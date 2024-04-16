@@ -25,6 +25,8 @@ WORKDIR /config
 COPY ./scripts/entrypoint.sh /usr/bin/entrypoint.sh
 RUN chmod +x  /usr/bin/entrypoint.sh
 
+RUN chown -R root:openvpn /download
+RUN chmod -R 775 /download
 WORKDIR /download
 USER openvpn 
 

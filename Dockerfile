@@ -2,7 +2,9 @@ FROM linuxserver/ffmpeg
 ENV TZ=Europe/Rome
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN apt update && apt upgrade -y && apt -y install git wget build-essential
+RUN apt update && apt upgrade -y && apt -y install git wget build-essential 
+#install for OpenVPN
+RUN apt -y install curl openvpn unzip
 WORKDIR /tmp
 RUN git clone https://github.com/FFmpeg/nv-codec-headers.git
 RUN cd nv-codec-headers && make install

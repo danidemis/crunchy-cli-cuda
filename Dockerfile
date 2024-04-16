@@ -11,7 +11,10 @@ WORKDIR /tmp
 RUN git clone https://github.com/FFmpeg/nv-codec-headers.git
 RUN cd nv-codec-headers && make install
 RUN cd /tmp/
-RUN apt-get -y install build-essential yasm cmake libtool libc6 libc6-dev unzip wget libnuma1 libnuma-dev ffmpeg sudo
+RUN apt-get -y install build-essential yasm cmake libtool libc6 libc6-dev unzip wget libnuma1 libnuma-dev ffmpeg sudo bash curl ip6tables iptables openvpn \
+shadow tini tzdata && \
+addgroup -S vpn && \
+rm -rf /tmp/*
 #RUN cd /tmp && git clone https://git.ffmpeg.org/ffmpeg.git && cd /tmp/ffmpeg && ./configure --enable-nvenc --enable-cuvid --enable-nonfree --enable-cuda-nvcc --enable-libnpp --extra-cflags=-I/usr/local/cuda/include --extra-ldflags=-L/usr/local/cuda/lib64 --disable-static --enable-shared
 #RUN cd /tmp/ffmpeg && make -j 8
 #RUN cd /tmp/ffmpeg && make install

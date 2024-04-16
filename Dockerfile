@@ -22,11 +22,12 @@ RUN useradd openvpn
 RUN echo "openvpn ALL=(ALL) NOPASSWD: openvpn,crunchy-cli" >> /etc/sudoers
 RUN mkdir /download
 WORKDIR /config
-COPY ./scripts/entrypoint.sh /config
+COPY ./scripts/entrypoint.sh /usr/bin/entrypoint.sh
+RUN chmod +x  /usr/bin/entrypoint.sh
 
 WORKDIR /download
 USER openvpn 
 
-ENTRYPOINT ["/bin/sh -c"]
+ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 #ENTRYPOINT ["/usr/bin/crunchy-cli"]
 #CMD ["-h"]
